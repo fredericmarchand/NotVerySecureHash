@@ -2,6 +2,8 @@
 
 import os
 import sys
+import string
+import random
 
 __debugging__ = False
 
@@ -34,7 +36,7 @@ def computeRunningCount(matrix, runningCount):
     runningCount[3] = (runningCount[3] + total) % 26
 
 
-def main(inputString):
+def computeHash(inputString):
 
     runningCount = [0, 0, 0, 0]
     matrix = [[0 for x in xrange(4)] for x in xrange(4)]
@@ -77,11 +79,23 @@ def main(inputString):
 
     convertRunningCountToLetters(runningCount)
 
-    print runningCount
+    if __debugging__:
+        print runningCount
 
+    return runningCount
+
+def main():
+    for i in range(0, 100000):
+        tempString = ''.join(random.choice(string.ascii_lowercase) for i in range(48))
+        tempHash = computeHash(tempString)
+        if  tempHash == ['s', 'n', 'j', 'i']:
+            print tempString
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        main(sys.argv[1].lower().replace(" ", ""))
+    
+    if len(sys.argv) == 1:
+        main()
+    elif len(sys.argv) == 2:
+        print computeHash(sys.argv[1].lower().replace(" ", ""))
     else:
         print "Wrong number of arguments"
