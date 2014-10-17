@@ -15,10 +15,9 @@ def convertMatrixToNumbers(matrix):
         for y in range(0, 4):
             matrix[x][y] = alphabet.index(matrix[x][y]) 
 
-def convertMatrixToLetters(matrix):
-    for x in range(0, 4):
-        for y in range(0, 4):
-            matrix[x][y] = alphabet[matrix[x][y]]
+def convertRunningCountToLetters(runningCount):
+    for i in range(0, 4):
+        runningCount[i] = alphabet[runningCount[i]]
 
 def computeRunningCount(matrix, runningCount):
     total = 0
@@ -76,7 +75,7 @@ def main(inputString):
         if __debugging__:
             print runningCount
 
-    convertMatrixToLetters(matrix)
+    convertRunningCountToLetters(runningCount)
 
     print runningCount
 
